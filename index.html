@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhavi — Portfolio</title>
+  <!-- TODO: replace with a one-line description of yourself for search engines / link previews -->
+  <meta name="description" content="Bhavi — incoming Information Systems student at Carnegie Mellon University, interested in Product Management and Human-Computer Interaction." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="#home" class="nav-logo">Bhavi</a>
+
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#philosophy">Philosophy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon" aria-hidden="true">&#9788;</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============ HOME ============ -->
+    <section id="home" class="section hero reveal">
+      <div class="container">
+        <p class="now-badge">
+          <span class="now-dot" aria-hidden="true"></span>
+          <!-- TODO: update this "now" line whenever what you're learning/building changes -->
+          Now: getting ready for CMU, tinkering with side projects
+        </p>
+
+        <h1 class="hero-title">Hi, I'm Bhavi.</h1>
+
+        <!-- TODO: replace with a short, specific line on who you are and what draws you to IS —
+             avoid a generic "aspiring X" line. Say something true and particular. -->
+        <p class="hero-lede">
+          I'm an incoming Information Systems student at Carnegie Mellon (Class of 2030).
+          I'm drawn to the point where product decisions, human behavior, and systems design
+          meet — the messy middle where a good idea either becomes usable or doesn't.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">See my work</a>
+          <a href="#contact" class="btn btn-ghost">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-intro">
+          <!-- TODO: replace with your own framing line for this section -->
+          A few things I've built or am building.
+        </p>
+
+        <div class="project-grid">
+
+          <!-- Real project: Sakshi -->
+          <article class="project-card reveal">
+            <div class="project-image">
+              <!-- TODO: add a screenshot to assets/images/sakshi.png and swap the div below for an <img> tag -->
+              <span class="project-image-placeholder">Screenshot coming soon</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Sakshi</h3>
+              <p class="project-tagline">"Write what is true for you right now."</p>
+              <!-- TODO: replace with a real 2-3 sentence description of Sakshi -->
+              <p class="project-description">
+                A journaling and reflective writing app. Description placeholder — what problem
+                does it solve, and what makes the writing experience different?
+              </p>
+              <ul class="project-meta">
+                <!-- TODO: replace with real tech stack -->
+                <li><strong>Stack:</strong> Next.js, TypeScript, Supabase</li>
+                <!-- TODO: replace with your real role -->
+                <li><strong>Role:</strong> Sole builder / designer</li>
+              </ul>
+              <a href="https://sakshi-mocha.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
+                View live →
+              </a>
+            </div>
+          </article>
+
+          <!-- Placeholder project 1 -->
+          <article class="project-card reveal">
+            <div class="project-image">
+              <span class="project-image-placeholder">Screenshot coming soon</span>
+            </div>
+            <div class="project-body">
+              <!-- TODO: replace with real project name -->
+              <h3 class="project-title">Project Two</h3>
+              <!-- TODO: replace with a one-line tagline -->
+              <p class="project-tagline">A short, memorable tagline goes here.</p>
+              <!-- TODO: replace with a real description -->
+              <p class="project-description">
+                Placeholder description — what is this project, who is it for, and why did you
+                build it?
+              </p>
+              <ul class="project-meta">
+                <!-- TODO: replace with real tech stack -->
+                <li><strong>Stack:</strong> TODO</li>
+                <!-- TODO: replace with your real role -->
+                <li><strong>Role:</strong> TODO</li>
+              </ul>
+              <!-- TODO: replace # with a real link, or remove this line if there isn't one yet -->
+              <a href="#" class="project-link">View live →</a>
+            </div>
+          </article>
+
+          <!-- Placeholder project 2 -->
+          <article class="project-card reveal">
+            <div class="project-image">
+              <span class="project-image-placeholder">Screenshot coming soon</span>
+            </div>
+            <div class="project-body">
+              <!-- TODO: replace with real project name -->
+              <h3 class="project-title">Project Three</h3>
+              <!-- TODO: replace with a one-line tagline -->
+              <p class="project-tagline">A short, memorable tagline goes here.</p>
+              <!-- TODO: replace with a real description -->
+              <p class="project-description">
+                Placeholder description — what is this project, who is it for, and why did you
+                build it?
+              </p>
+              <ul class="project-meta">
+                <li><strong>Stack:</strong> TODO</li>
+                <li><strong>Role:</strong> TODO</li>
+              </ul>
+              <a href="#" class="project-link">View live →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-intro">
+          <!-- TODO: replace with your own framing line for this section -->
+          Where I've spent my time so far.
+        </p>
+
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <!-- TODO: replace with real dates -->
+            <span class="timeline-date">2025 — Present</span>
+            <div class="timeline-content">
+              <!-- TODO: replace with real role / organization -->
+              <h3 class="timeline-title">Role Title, Organization</h3>
+              <!-- TODO: replace with 1-2 sentences on what you did / learned -->
+              <p>Placeholder description of this role, project, or leadership position.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2024 — 2025</span>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Role Title, Organization</h3>
+              <p>Placeholder description of this role, project, or leadership position.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2023 — 2024</span>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Role Title, Organization</h3>
+              <p>Placeholder description of this role, project, or leadership position.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PHILOSOPHY ============ -->
+    <!-- This section intentionally uses a different background tone and a longer-form,
+         serif-led layout so it reads as more personal/reflective than the rest of the page. -->
+    <section id="philosophy" class="section philosophy reveal">
+      <div class="container container-narrow">
+        <h2 class="section-title">Philosophy &amp; Interests</h2>
+
+        <!-- TODO: replace with real writing. Suggested prompts: how do you think about
+             technology, systems, and design? What draws you to Advaita Vedanta / Hindu
+             philosophy, and does it shape how you think about product or systems work? -->
+        <p class="philosophy-text">
+          Placeholder — this is where longer-form thinking lives. I'm interested in the
+          idea that good systems, like good philosophy, are mostly about removing what
+          doesn't need to be there. Advaita Vedanta's insistence on looking past layers
+          of appearance to something simpler underneath feels, to me, like the same
+          instinct that makes a piece of software or a product decision feel obviously
+          right once someone finally states it clearly.
+        </p>
+        <p class="philosophy-text">
+          Placeholder — a second paragraph, if useful, on how this interest shows up in
+          daily life or in how you approach problems.
+        </p>
+
+        <blockquote class="philosophy-quote">
+          <!-- TODO: replace with a quote, verse, or line that means something to you -->
+          "Replace with a line that means something to you."
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section reveal">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-intro">
+          <!-- TODO: replace with your own framing line -->
+          I'd like to hear from you.
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <!-- TODO: replace with real email address -->
+            <a href="mailto:you@example.com">you@example.com</a>
+          </li>
+          <li>
+            <!-- TODO: replace with real LinkedIn URL -->
+            <a href="https://linkedin.com/in/TODO" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </li>
+          <li>
+            <!-- TODO: replace with real GitHub URL -->
+            <a href="https://github.com/TODO" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </li>
+          <li>
+            <!-- TODO: add resume file to assets/ and link it here -->
+            <a href="#" target="_blank" rel="noopener noreferrer">Resume</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Bhavi. Built with plain HTML, CSS, and JS.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
