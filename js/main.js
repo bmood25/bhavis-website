@@ -1,27 +1,6 @@
 (function () {
   'use strict';
 
-  /* Theme toggle: respects saved preference, then system preference */
-  var root = document.documentElement;
-  var themeToggle = document.getElementById('theme-toggle');
-  var themeIcon = themeToggle.querySelector('.theme-icon');
-  var THEME_KEY = 'bhavi-theme';
-
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    themeIcon.innerHTML = theme === 'dark' ? '&#9789;' : '&#9788;';
-  }
-
-  var savedTheme = localStorage.getItem(THEME_KEY);
-  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
-
-  themeToggle.addEventListener('click', function () {
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
-    localStorage.setItem(THEME_KEY, next);
-  });
-
   /* Mobile nav toggle */
   var navToggle = document.getElementById('nav-toggle');
   var navLinks = document.getElementById('nav-links');
@@ -62,7 +41,4 @@
       el.classList.add('in-view');
     });
   }
-
-  /* Footer year */
-  document.getElementById('year').textContent = new Date().getFullYear();
 })();

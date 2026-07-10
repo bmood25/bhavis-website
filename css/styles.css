@@ -29,18 +29,20 @@
   color-scheme: light;
 }
 
-[data-theme='dark'] {
-  --bg: #14130f;
-  --bg-elevated: #1c1a16;
-  --text: #ece7de;
-  --text-muted: #a39c8f;
-  --accent: #d68a4c;
-  --accent-soft: #2a2117;
-  --border: #2e2a23;
-  --philosophy-bg: #1a1712;
-  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14130f;
+    --bg-elevated: #1c1a16;
+    --text: #ece7de;
+    --text-muted: #a39c8f;
+    --accent: #d68a4c;
+    --accent-soft: #2a2117;
+    --border: #2e2a23;
+    --philosophy-bg: #1a1712;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 
-  color-scheme: dark;
+    color-scheme: dark;
+  }
 }
 
 /* ==========================================================================
@@ -192,25 +194,6 @@ p {
   color: var(--accent);
 }
 
-.theme-toggle {
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  color: var(--text);
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.theme-toggle:hover {
-  transform: scale(1.06);
-}
-
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -242,6 +225,23 @@ p {
   min-height: 80vh;
   display: flex;
   align-items: center;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 340px;
 }
 
 .now-badge {
@@ -316,6 +316,10 @@ p {
   gap: var(--space-4);
 }
 
+.project-grid--single {
+  max-width: 460px;
+}
+
 .project-card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -380,44 +384,6 @@ p {
 }
 
 /* ==========================================================================
-   Experience / Timeline
-   ========================================================================== */
-
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  gap: var(--space-3);
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border);
-}
-
-.timeline-item:last-child {
-  border-bottom: none;
-}
-
-.timeline-date {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  white-space: nowrap;
-}
-
-.timeline-title {
-  font-size: 1.1rem;
-  margin-bottom: 0.35rem;
-}
-
-.timeline-content p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-}
-
-/* ==========================================================================
    Philosophy — distinct visual treatment
    ========================================================================== */
 
@@ -466,17 +432,6 @@ p {
 }
 
 /* ==========================================================================
-   Footer
-   ========================================================================== */
-
-.site-footer {
-  border-top: 1px solid var(--border);
-  padding: var(--space-3) 0;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
    Responsive
    ========================================================================== */
 
@@ -517,8 +472,20 @@ p {
     border-bottom: none;
   }
 
-  .timeline-item {
+  .hero-grid {
     grid-template-columns: 1fr;
-    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .hero-image {
+    order: -1;
+  }
+
+  .hero-image img {
+    max-width: 220px;
+  }
+
+  .hero-actions {
+    justify-content: center;
   }
 }
