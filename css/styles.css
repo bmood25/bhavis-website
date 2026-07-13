@@ -390,6 +390,12 @@ p {
   color: var(--accent);
 }
 
+.project-status {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 /* ==========================================================================
    Philosophy — distinct visual treatment
    ========================================================================== */
