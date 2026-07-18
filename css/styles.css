@@ -3,18 +3,23 @@
    ========================================================================== */
 
 :root {
-  --font-serif: 'Fraunces', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Bagel Fat One', cursive;
+  --font-sans: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  --bg: #faf8f4;
-  --bg-elevated: #ffffff;
-  --text: #1c1a17;
-  --text-muted: #5b564e;
-  --accent: #a9622d;
-  --accent-soft: #f0e4d8;
-  --border: #e4ddd2;
-  --philosophy-bg: #f3ece1;
-  --shadow: 0 4px 24px rgba(28, 26, 23, 0.06);
+  --sky: #87ceeb;
+  --sky-deep: #4fb3e0;
+  --beige: #f5f5dc;
+  --beige-deep: #f5c542;
+
+  --bg: var(--beige);
+  --bg-elevated: #fffdf2;
+  --text: #17324a;
+  --text-muted: #4d6a80;
+  --accent: var(--sky-deep);
+  --accent-soft: #d9f0fb;
+  --border: #cfe8f5;
+  --philosophy-bg: #d9f0fb;
+  --shadow: 0 4px 24px rgba(23, 50, 74, 0.12);
 
   --radius: 12px;
   --max-width: 1100px;
@@ -31,14 +36,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14130f;
-    --bg-elevated: #1c1a16;
-    --text: #ece7de;
-    --text-muted: #a39c8f;
-    --accent: #d68a4c;
-    --accent-soft: #2a2117;
-    --border: #2e2a23;
-    --philosophy-bg: #1a1712;
+    --bg: #142430;
+    --bg-elevated: #1b3244;
+    --text: #f5f5dc;
+    --text-muted: #b9d3c9;
+    --accent: #87ceeb;
+    --accent-soft: #234255;
+    --border: #2c4a5e;
+    --philosophy-bg: #1a3648;
     --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
 
     color-scheme: dark;
@@ -62,11 +67,149 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: var(--bg);
+  background: linear-gradient(120deg, var(--sky), var(--beige), var(--beige-deep), var(--beige));
+  background-size: 400% 400%;
+  animation: shift-wash 24s ease-in-out infinite;
   color: var(--text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+@keyframes shift-wash {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-image: linear-gradient(120deg, #142430, #1b3244, #234255, #142430);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Melting blob background
+   ========================================================================== */
+
+.goo-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blob-field {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  filter: url(#goo) blur(2px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  opacity: 0.45;
+  animation: melt-drift 18s ease-in-out infinite, melt-morph 12s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 34vmax;
+  height: 34vmax;
+  top: -10%;
+  left: -10%;
+  background: var(--sky);
+  animation-duration: 22s, 14s;
+}
+
+.blob-2 {
+  width: 26vmax;
+  height: 26vmax;
+  top: 40%;
+  right: -12%;
+  background: var(--beige-deep);
+  animation-duration: 19s, 11s;
+  animation-delay: -4s, -2s;
+}
+
+.blob-3 {
+  width: 22vmax;
+  height: 22vmax;
+  bottom: -12%;
+  left: 15%;
+  background: var(--sky-deep);
+  animation-duration: 26s, 16s;
+  animation-delay: -9s, -5s;
+}
+
+.blob-4 {
+  width: 18vmax;
+  height: 18vmax;
+  bottom: 10%;
+  right: 20%;
+  background: var(--beige);
+  animation-duration: 21s, 13s;
+  animation-delay: -13s, -7s;
+}
+
+@keyframes melt-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, 8%) scale(1.1);
+  }
+  66% {
+    transform: translate(-5%, 4%) scale(0.9);
+  }
+}
+
+@keyframes melt-morph {
+  0%,
+  100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 35% 65% 55% 45% / 65% 35% 65% 35%;
+  }
+  75% {
+    border-radius: 55% 45% 65% 35% / 30% 65% 35% 70%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob {
+    animation: none;
+  }
+}
+
+.container,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+main {
+  position: relative;
+  z-index: 1;
 }
 
 img {
@@ -90,9 +233,10 @@ h1,
 h2,
 h3 {
   font-family: var(--font-serif);
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.15;
   margin: 0;
+  letter-spacing: 0.01em;
 }
 
 p {
@@ -176,6 +320,23 @@ p {
 .hero-image img {
   width: 100%;
   max-width: 340px;
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image img {
+    animation: none;
+  }
 }
 
 .now-badge {
@@ -203,6 +364,36 @@ p {
   margin-bottom: var(--space-3);
 }
 
+.wavy-text {
+  display: inline-block;
+}
+
+.wavy-text .letter {
+  display: inline-block;
+  animation: melt-wave 3.2s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.06s);
+}
+
+.wavy-text .letter.is-space {
+  width: 0.35em;
+}
+
+@keyframes melt-wave {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(6px) rotate(-3deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wavy-text .letter {
+    animation: none;
+  }
+}
+
 .hero-lede {
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   color: var(--text-muted);
@@ -221,18 +412,21 @@ p {
   padding: 0.75rem 1.5rem;
   border-radius: 999px;
   font-size: 0.95rem;
-  font-weight: 500;
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.2s ease, border-color 0.2s ease,
+    border-radius 0.4s ease;
   border: 1px solid transparent;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.03);
+  border-radius: 40% 60% 60% 40% / 65% 45% 55% 35%;
 }
 
 .btn-primary {
-  background: var(--accent);
-  color: #fff;
+  background: var(--sky);
+  color: #17324a;
+  font-weight: 700;
 }
 
 .btn-ghost {
@@ -259,12 +453,31 @@ p {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-radius 0.6s ease;
+  animation: card-melt 16s ease-in-out infinite;
 }
 
 .project-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+  animation-play-state: paused;
+  border-radius: 28px 8px 28px 8px;
+}
+
+@keyframes card-melt {
+  0%,
+  100% {
+    border-radius: var(--radius);
+  }
+  50% {
+    border-radius: 22px 10px 22px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card {
+    animation: none;
+  }
 }
 
 .project-image {
@@ -345,12 +558,22 @@ p {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: var(--space-3);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-radius 0.6s ease;
+  animation: card-melt 16s ease-in-out infinite;
+  animation-delay: -6s;
 }
 
 .experience-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+  animation-play-state: paused;
+  border-radius: 28px 8px 28px 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card {
+    animation: none;
+  }
 }
 
 .experience-header {
@@ -425,7 +648,8 @@ p {
 }
 
 .philosophy-text {
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: clamp(1.1rem, 2vw, 1.35rem);
   line-height: 1.75;
   color: var(--text);
@@ -436,7 +660,8 @@ p {
   margin: var(--space-4) 0 0;
   padding-left: var(--space-3);
   border-left: 3px solid var(--accent);
-  font-family: var(--font-serif);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-style: italic;
   font-size: 1.15rem;
   color: var(--text-muted);
