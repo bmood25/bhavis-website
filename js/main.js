@@ -1,22 +1,6 @@
 (function () {
   'use strict';
 
-  /* Mobile nav toggle */
-  var navToggle = document.getElementById('nav-toggle');
-  var navLinks = document.getElementById('nav-links');
-
-  navToggle.addEventListener('click', function () {
-    var isOpen = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', String(isOpen));
-  });
-
-  navLinks.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
   /* Scroll reveal */
   var revealEls = document.querySelectorAll('.reveal');
 

@@ -151,72 +151,6 @@ p {
 }
 
 /* ==========================================================================
-   Header / Nav
-   ========================================================================== */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: var(--space-2) var(--space-3);
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.nav-logo {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-right: auto;
-}
-
-.nav-links {
-  display: flex;
-  gap: var(--space-4);
-}
-
-.nav-links a {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  transition: color 0.2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--accent);
-}
-
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 4px;
-  width: 2rem;
-  height: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
-
-.nav-toggle span {
-  display: block;
-  height: 2px;
-  width: 100%;
-  background: var(--text);
-  border-radius: 2px;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-/* ==========================================================================
    Hero
    ========================================================================== */
 
@@ -543,42 +477,6 @@ p {
    ========================================================================== */
 
 @media (max-width: 768px) {
-  .nav-toggle {
-    display: flex;
-    order: 3;
-  }
-
-  .nav-links {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    right: 0;
-    background: var(--bg-elevated);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    gap: 0;
-    padding: var(--space-2) var(--space-3);
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-  }
-
-  .nav-links.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .nav-links li {
-    padding: var(--space-2) 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-links li:last-child {
-    border-bottom: none;
-  }
-
   .hero-grid {
     grid-template-columns: 1fr;
     text-align: center;
