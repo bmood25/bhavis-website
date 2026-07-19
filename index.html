@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Bhavi | Portfolio</title>
-  <!-- TODO: replace with a one-line description of yourself for search engines / link previews -->
   <meta name="description" content="Bhavi, incoming Information Systems student at Carnegie Mellon University, interested in Product Management and Human-Computer Interaction." />
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
@@ -17,271 +16,256 @@
 </head>
 <body>
 
-  <svg class="goo-defs" aria-hidden="true" focusable="false">
-    <filter id="goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-      <feColorMatrix in="blur" mode="matrix"
-        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo" />
-      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
-    </filter>
-  </svg>
+  <!-- ============ HOME SCENE (fixed, non-scrolling bulletin board) ============ -->
+  <div class="stage" id="stage">
+    <div class="scene" id="scene">
+      <div class="board">
 
-  <div class="blob-field" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
-    <span class="blob blob-4"></span>
+        <div class="intro-column">
+          <div class="speech-bubble" id="intro-bubble">
+            <span class="tape tape-left" aria-hidden="true"></span>
+            <span class="tape tape-right" aria-hidden="true"></span>
+            <p>
+              Hey! I&rsquo;m Bhavi. I&rsquo;m a student at Carnegie Mellon University (Class of 2030)
+              studying Information Systems. I&rsquo;m interested in Product Management and
+              Human-Computer Interaction, particularly curious about our society&rsquo;s relationship
+              with technology and how we can design it more humanely, for real social benefit.
+            </p>
+            <span class="speech-tail" aria-hidden="true"></span>
+          </div>
+
+          <button class="get-in-touch" type="button" data-target="contact">
+            Get in touch
+          </button>
+        </div>
+
+        <div class="photo-cluster">
+          <div class="thought-bubbles">
+            <button class="thought-bubble tb-philosophy" type="button" data-target="philosophy">
+              <span>Philosophy</span>
+            </button>
+            <button class="thought-bubble tb-projects" type="button" data-target="projects">
+              <span>Projects</span>
+            </button>
+            <button class="thought-bubble tb-experience" type="button" data-target="experience">
+              <span>Experience</span>
+            </button>
+            <span class="thought-dot dot-1" aria-hidden="true"></span>
+            <span class="thought-dot dot-2" aria-hidden="true"></span>
+          </div>
+
+          <button class="photo-frame" type="button" data-target="contact" aria-label="Open contact panel">
+            <img src="assets/photo.jpg" alt="Portrait of Bhavi" />
+          </button>
+        </div>
+
+      </div>
+    </div>
   </div>
 
-  <main>
+  <!-- ============ FULL-SCREEN PANELS ============ -->
+  <div class="panels" id="panels">
 
-    <!-- ============ HOME ============ -->
-    <section id="home" class="section hero reveal">
-      <div class="container hero-grid">
-        <div class="hero-text">
-          <p class="now-badge">
-            <span class="now-dot" aria-hidden="true"></span>
-            <!-- TODO: update this "now" line whenever what you're learning/building changes -->
-            Now: getting ready for CMU, tinkering with side projects
+    <!-- PHILOSOPHY -->
+    <section class="panel" id="panel-philosophy" data-panel="philosophy" role="dialog" aria-modal="true" aria-labelledby="philosophy-title">
+      <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
+      <div class="panel-inner">
+        <h2 id="philosophy-title" class="panel-title">Philosophy &amp; Interests</h2>
+        <div class="panel-body panel-body--narrow">
+          <p>
+            I believe that innovation is strongest when it&rsquo;s rooted in a core philosophy.
+            For me, that philosophy is Advaita Vedanta &mdash; the nondual school of Hindu thought
+            systematized by Adi Shankaracharya in the 8th century CE. Its central claim is simple
+            to state and hard to fully grasp: the sense that you are a separate self, cut off from
+            everything else, is not the deepest truth. Beneath that sense of separateness is one
+            undivided consciousness &mdash; what Advaita calls Brahman &mdash; and everything,
+            including you, is an expression of it.
           </p>
-
-          <h1 class="hero-title wavy-text">Hey! I&rsquo;m Bhavi.</h1>
-
-          <p class="hero-lede">
-            I&rsquo;m a student at Carnegie Mellon University (Class of 2030) studying
-            Information Systems. I&rsquo;m interested in Product Management and
-            Human-Computer Interaction, particularly curious about our society&rsquo;s
-            relationship with technology and how we can design humane products for
-            social benefit.
+          <p>
+            In more practical terms, it holds that each of us carries an immense, often unrealized
+            strength and courage within. I believe that humane strength should sit at the center of
+            any product &mdash; the product itself is simply a means through which we come to
+            realize ourselves.
           </p>
+          <blockquote class="panel-quote">
+            &ldquo;Truth, and nothing but truth, is the watchword of the Advaitist.&rdquo;
+            <cite>Swami Vivekananda</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
 
-          <div class="hero-actions">
-            <a href="#projects" class="btn btn-primary">See my work</a>
-            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    <!-- PROJECTS -->
+    <section class="panel" id="panel-projects" data-panel="projects" role="dialog" aria-modal="true" aria-labelledby="projects-title">
+      <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
+      <div class="panel-inner">
+        <h2 id="projects-title" class="panel-title">Projects</h2>
+        <p class="panel-subtext">A few things I&rsquo;ve built or am building.</p>
+
+        <div class="panel-body">
+          <div class="project-grid">
+
+            <article class="project-card">
+              <div class="project-image">
+                <img src="assets/images/sakshi.png" alt="Sakshi welcome screen showing the Manas and Chitta modes" />
+              </div>
+              <div class="project-copy">
+                <h3 class="project-title">Sakshi</h3>
+                <p class="project-tagline">&ldquo;Write what is true for you right now.&rdquo;</p>
+                <p class="project-description">
+                  This is my take on AI functioning as a mirror. Sakshi is a journaling app that
+                  surfaces structural patterns and tendencies in your journals, voice memos,
+                  academic work, and even case studies. It is designed to help you see yourself
+                  more clearly, not to tell you what to think or feel.
+                  Sakshi is also inspired by the Advaita Vedanta idea that the world is a
+                  reflection of the self. Essentially, the AI&rsquo;s analysis is intended to be a
+                  mirror that surfaces your own consciousness back to you, helping you to see
+                  yourself more clearly.
+                </p>
+                <ul class="project-meta">
+                  <li><strong>Stack:</strong> Next.js, TypeScript, Supabase, Anthropic API</li>
+                  <li><strong>Role:</strong> Sole builder / designer</li>
+                </ul>
+                <a href="https://sakshi-mocha.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
+                  View live &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img src="assets/images/vichara.png" alt="Vichara app home screen showing New Entry, Timeline, and Themes" />
+              </div>
+              <div class="project-copy">
+                <h3 class="project-title">Vichara</h3>
+                <p class="project-tagline">I needed this, so I built it.</p>
+                <p class="project-description">
+                  A way for you to store those hard-hitting lines and understand why you resonated
+                  with them. Vichara is a reflective reading journal for scripture, poetry, or any
+                  text that stops you mid-page. I made this as an alternative to the collage of
+                  sticky notes I had on my wall. What&rsquo;s more, I wanted to learn from this
+                  massive cluster by finding themes in my choices. Lo and behold, I use Vichara
+                  everyday. It&rsquo;s built to work across any tradition, or none, whether it&rsquo;s
+                  scripture, a line of poetry, or a quote that caught you off guard: the app
+                  doesn&rsquo;t assume what kind of text matters to you.
+                </p>
+                <ul class="project-meta">
+                  <li><strong>Stack:</strong> Expo (React Native), TypeScript, Firebase, Claude API</li>
+                  <li><strong>Role:</strong> Sole builder / designer</li>
+                </ul>
+                <a href="https://vichara-kappa.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
+                  View live &rarr;
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-image">
+                <img src="assets/images/projects-placeholder.png" alt="Stencil app screenshot" />
+              </div>
+              <div class="project-copy">
+                <h3 class="project-title">Stencil</h3>
+                <p class="project-tagline">Ensure that your organization stays true to what it stands for.</p>
+                <p class="project-description">
+                  An organization-wide alignment tool that compares what a company declares it
+                  values against what its people actually experience. Leaders define the org&rsquo;s
+                  stated values and tie ongoing projects to them; employees privately reflect on
+                  real moments (decisions, tensions, wins) without ever exposing who said what.
+                  Once enough independent voices agree, a pattern surfaces, and Stencil flags where
+                  a project&rsquo;s declared purpose and its lived reality genuinely diverge, or
+                  confirms where they align. Built around a structural privacy guarantee, not just
+                  a policy promise: no raw reflection is ever readable by anyone but its author,
+                  enforced at the database layer.
+                </p>
+                <ul class="project-meta">
+                  <li><strong>Stack:</strong> Next.js, TypeScript, Supabase (Postgres + Row-Level Security)</li>
+                  <li><strong>Role:</strong> Sole builder / designer</li>
+                </ul>
+                <a href="https://stencil-mu-seven.vercel.app/login" class="project-link" target="_blank" rel="noopener noreferrer">
+                  View live &rarr;
+                </a>
+              </div>
+            </article>
+
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="hero-image">
-          <img src="assets/images/bhavi.png" alt="Portrait of Bhavi" />
+    <!-- EXPERIENCE -->
+    <section class="panel" id="panel-experience" data-panel="experience" role="dialog" aria-modal="true" aria-labelledby="experience-title">
+      <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
+      <div class="panel-inner">
+        <h2 id="experience-title" class="panel-title">Experience</h2>
+        <p class="panel-subtext">Where I&rsquo;ve worked and what I&rsquo;ve built along the way.</p>
+
+        <div class="panel-body">
+          <div class="experience-list">
+
+            <article class="experience-card">
+              <div class="experience-header">
+                <h3 class="experience-role">Product &amp; Marketing Operations Intern</h3>
+                <span class="experience-dates">June 2026 &ndash; Present</span>
+              </div>
+              <p class="experience-org">Swoveralls / DEFI Snacks</p>
+              <ul class="experience-bullets">
+                <li>Drove go-to-market decisions for an early-stage D2C nutrition brand by conducting competitive landscape and vendor research, directly informing recurring-revenue strategy and Shopify subscription infrastructure</li>
+                <li>Managed creative production end-to-end using AI-assisted design tools, iterating across variations to meet brand and platform-specific requirements (Amazon, web). It was a crash course in balancing consistency, speed, and stakeholder feedback</li>
+                <li>Operated with direct founder/CEO access in an undefined-scope startup environment, independently prioritizing across research and creative workstreams. It was a hands-on introduction to the ambiguity and ownership PMs navigate daily</li>
+              </ul>
+            </article>
+
+            <article class="experience-card">
+              <div class="experience-header">
+                <h3 class="experience-role">Co-Founder</h3>
+                <span class="experience-dates">August 2023 &ndash; Present</span>
+              </div>
+              <p class="experience-org">NASTP (North Attleboro Senior Tech Program)</p>
+              <ul class="experience-bullets">
+                <li>Co-founded and led a volunteer initiative delivering technology education to senior citizens, scaling from an idea to 30+ student volunteers across 10+ senior centers in 5 towns</li>
+                <li>Secured a Massachusetts Broadband Institute grant, providing 50 laptops to residents at the Branches of North Attleboro. It was my first experience translating community need into funded action</li>
+                <li>Delivered 250+ hours of group seminars and 1:1 instruction on AI literacy, device use, and digital safety, adapting communication style for a population with widely varying tech comfort</li>
+                <li>Recognized with a NorthServes Volunteer Award; earned a letter of support from MA State Rep. Adam Scanlon and was featured on the North Attleboro Town Manager&rsquo;s podcast</li>
+              </ul>
+            </article>
+
+            <article class="experience-card experience-card--compact">
+              <div class="experience-header">
+                <h3 class="experience-role">High School Intern</h3>
+                <span class="experience-dates">July 2025 &ndash; August 2025</span>
+              </div>
+              <p class="experience-org">Red Hat</p>
+              <p class="experience-summary">
+                Built a website using HTML, CSS, and JavaScript as part of a paid summer internship
+                at Red Hat&rsquo;s Boston office, gaining early exposure to professional software
+                development workflows and corporate engineering culture.
+              </p>
+            </article>
+
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============ EXPERIENCE ============ -->
-    <section id="experience" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <p class="section-intro">
-          Where I've worked and what I've built along the way.
-        </p>
-
-        <div class="experience-list">
-
-          <article class="experience-card reveal">
-            <div class="experience-header">
-              <h3 class="experience-role">Product &amp; Marketing Operations Intern</h3>
-              <span class="experience-dates">June 2026 – Present</span>
-            </div>
-            <p class="experience-org">Swoveralls / DEFI Snacks</p>
-            <ul class="experience-bullets">
-              <li>Drove go-to-market decisions for an early-stage D2C nutrition brand by conducting competitive landscape and vendor research, directly informing recurring-revenue strategy and Shopify subscription infrastructure</li>
-              <li>Managed creative production end-to-end using AI-assisted design tools, iterating across variations to meet brand and platform-specific requirements (Amazon, web). It was a crash course in balancing consistency, speed, and stakeholder feedback</li>
-              <li>Operated with direct founder/CEO access in an undefined-scope startup environment, independently prioritizing across research and creative workstreams. It was a hands-on introduction to the ambiguity and ownership PMs navigate daily</li>
-            </ul>
-          </article>
-
-          <article class="experience-card reveal">
-            <div class="experience-header">
-              <h3 class="experience-role">Co-Founder</h3>
-              <span class="experience-dates">August 2023 – Present</span>
-            </div>
-            <p class="experience-org">NASTP (North Attleboro Senior Tech Program)</p>
-            <ul class="experience-bullets">
-              <li>Co-founded and led a volunteer initiative delivering technology education to senior citizens, scaling from an idea to 30+ student volunteers across 10+ senior centers in 5 towns</li>
-              <li>Secured a Massachusetts Broadband Institute grant, providing 50 laptops to residents at the Branches of North Attleboro. It was my first experience translating community need into funded action</li>
-              <li>Delivered 250+ hours of group seminars and 1:1 instruction on AI literacy, device use, and digital safety, adapting communication style for a population with widely varying tech comfort</li>
-              <li>Recognized with a NorthServes Volunteer Award; earned a letter of support from MA State Rep. Adam Scanlon and was featured on the North Attleboro Town Manager's podcast</li>
-            </ul>
-          </article>
-
-          <article class="experience-card experience-card--compact reveal">
-            <div class="experience-header">
-              <h3 class="experience-role">High School Intern</h3>
-              <span class="experience-dates">July 2025 – August 2025</span>
-            </div>
-            <p class="experience-org">Red Hat</p>
-            <p class="experience-summary">
-              Built a website using HTML, CSS, and JavaScript as part of a paid summer internship at Red Hat's Boston office, gaining early exposure to professional software development workflows and corporate engineering culture.
-            </p>
-          </article>
-
+    <!-- CONTACT -->
+    <section class="panel" id="panel-contact" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
+      <div class="panel-inner">
+        <h2 id="contact-title" class="panel-title">Contact</h2>
+        <p class="panel-subtext">I&rsquo;d like to hear from you.</p>
+        <div class="panel-body panel-body--narrow">
+          <ul class="contact-list">
+            <li><a href="mailto:bcmood25@gmail.com">bcmood25@gmail.com</a></li>
+            <li><a href="mailto:bmood@andrew.cmu.edu">bmood@andrew.cmu.edu</a></li>
+            <li><a href="https://www.linkedin.com/in/bhavishnumood" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/bmood25" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="assets/resume/Bhavishnu-Mood-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <!-- ============ PROJECTS ============ -->
-    <section id="projects" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-intro">
-          <!-- TODO: replace with your own framing line for this section -->
-          A few things I've built or am building.
-        </p>
-
-        <div class="project-grid">
-
-          <!-- Real project: Sakshi -->
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="assets/images/sakshi.png" alt="Sakshi welcome screen showing the Manas and Chitta modes" />
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Sakshi</h3>
-              <p class="project-tagline">"Write what is true for you right now."</p>
-              <p class="project-description">
-                This is my take on AI functioning as a mirror. Sakshi is a journaling app that surfaces 
-                structural patterns and tendencies in your journals, voice memos, academic work, 
-                and even case studies. It is designed to help you see yourself more clearly, not 
-                to tell you what to think or feel. 
-
-                Sakshi is also inspired by the Advaita Vedanta idea that the world is a reflection of the self.
-                Essentially, the AI's analysis is intended to be a mirror that surfaces your own consciousness back
-                to you, helping you to see yourself more clearly.
-    
-              </p>
-              <ul class="project-meta">
-                <li><strong>Stack:</strong> Next.js, TypeScript, Supabase, Anthropic API</li>
-                <li><strong>Role:</strong> Sole builder / designer</li>
-              </ul>
-              <a href="https://sakshi-mocha.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
-                View live →
-              </a>
-            </div>
-          </article>
-
-          <!-- Real project: Vichara -->
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="assets/images/vichara.png" alt="Vichara app home screen showing New Entry, Timeline, and Themes" />
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Vichara</h3>
-              <p class="project-tagline">I needed this, so I built it.</p>
-              <p class="project-description">
-                A way for you to store those hard-hitting lines and understand why you resonated with them.
-                Vichara is a reflective reading journal for scripture, poetry, or any text that stops you mid-page.
-
-                I made this as an alternative to the collage of sticky notes I had on my wall. What's more, I wanted to
-                learn from this massive cluster by finding themes in my choices. Lo and behold, I use Vichara everyday.
-
-                It's built to work across any
-                tradition, or none, whether it's scripture, a line of poetry, or a quote that
-                caught you off guard: the app doesn't assume what kind of text matters to you.
-              </p>
-              <ul class="project-meta">
-                <li><strong>Stack:</strong> Expo (React Native), TypeScript, Firebase, Claude API</li>
-                <li><strong>Role:</strong> Sole builder / designer</li>
-              </ul>
-              <a href="https://vichara-kappa.vercel.app/" class="project-link" target="_blank" rel="noopener noreferrer">
-                View live →
-              </a>
-            </div>
-          </article>
-
-          <!-- Real project: Stencil -->
-          <article class="project-card reveal">
-            <div class="project-image">
-              <img src="assets/images/projects-placeholder.png" alt="Stencil app screenshot" />
-            </div>
-            <div class="project-body">
-              <h3 class="project-title">Stencil</h3>
-              <p class="project-tagline">Ensure that your organization stays true to what it stands for.</p>
-              <p class="project-description">
-                An organization-wide alignment tool that compares what a company declares it
-                values against what its people actually experience. Leaders define the org's
-                stated values and tie ongoing projects to them; employees privately reflect on
-                real moments (decisions, tensions, wins) without ever exposing who said what.
-                Once enough independent voices agree, a pattern surfaces, and Stencil flags
-                where a project's declared purpose and its lived reality genuinely diverge, or
-                confirms where they align. Built around a structural privacy guarantee, not just
-                a policy promise: no raw reflection is ever readable by anyone but its author,
-                enforced at the database layer.
-              </p>
-              <ul class="project-meta">
-                <li><strong>Stack:</strong> Next.js, TypeScript, Supabase (Postgres + Row-Level Security)</li>
-                <li><strong>Role:</strong> Sole builder / designer</li>
-              </ul>
-              <a href="https://stencil-mu-seven.vercel.app/login" class="project-link" target="_blank" rel="noopener noreferrer">
-                View live →
-              </a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PHILOSOPHY ============ -->
-    <!-- This section intentionally uses a different background tone and a longer-form,
-         serif-led layout so it reads as more personal/reflective than the rest of the page. -->
-    <section id="philosophy" class="section philosophy reveal">
-      <div class="container container-narrow">
-        <h2 class="section-title">Philosophy &amp; Interests</h2>
-
-        <p class="philosophy-text">
-          I believe that innovation is strongest when it&rsquo;s rooted in a core
-          philosophy. For me, that philosophy is Advaita Vedanta, the nondual school
-          of Hindu thought systematized by Adi Shankaracharya in the 8th century CE.
-          Its central claim is simple to state, but hard to fully grasp: the sense
-          that you are a separate self, cut off from everything else, is not the
-          deepest truth. Beneath that sense of separateness is one undivided
-          consciousness (what Advaita calls Brahman) and everything, including you,
-          is an expression of it.
-        </p>
-        <p class="philosophy-text">
-          In more practical terms, it holds that each of us carries an immense, often
-          unrealized strength and courage within. I believe that humane strength
-          should sit at the center of any product. The product itself is simply a
-          means through which we come to realize ourselves.
-        </p>
-
-        <blockquote class="philosophy-quote">
-          &ldquo;Truth, and nothing but truth, is the watchword of the Advaitist.&rdquo;
-          <cite>Swami Vivekananda</cite>
-        </blockquote>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section id="contact" class="section reveal">
-      <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <p class="section-intro">
-          <!-- TODO: replace with your own framing line -->
-          I'd like to hear from you.
-        </p>
-
-        <ul class="contact-list">
-          <li>
-            <a href="mailto:bcmood25@gmail.com">bcmood25@gmail.com</a>
-          </li>
-          <li>
-            <a href="mailto:bmood@andrew.cmu.edu">bmood@andrew.cmu.edu</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/bhavishnumood" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://github.com/bmood25" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </li>
-          <li>
-            <a href="assets/resume/Bhavishnu-Mood-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-  </main>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
