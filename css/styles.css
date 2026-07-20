@@ -6,19 +6,19 @@
   --font-display: 'Bagel Fat One', cursive;
   --font-sans: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  --mustard: #e8ac2e;
-  --mustard-deep: #d69a1d;
-  --cream: #fff8e9;
-  --cream-dim: #f7efd9;
-  --navy: #1c2541;
-  --navy-soft: #48557a;
-  --ink: #14171c;
-  --accent: #ff5a4e;
-  --accent-ink: #7a1f17;
+  --sky: #87cefa;
+  --sky-deep: #4fa9dd;
+  --beige: #f5f5dc;
+  --beige-deep: #e8e4c4;
+  --cream: #fffdf5;
 
-  --outline: 4px;
-  --pop-shadow: 6px 6px 0 var(--ink);
-  --pop-shadow-sm: 4px 4px 0 var(--ink);
+  --navy: #000000;
+  --navy-soft: #000000;
+  --border: #bfe0f7;
+  --cloud-ink: #14171c;
+
+  --shadow: 0 10px 30px rgba(28, 37, 65, 0.15);
+  --shadow-sm: 0 6px 16px rgba(28, 37, 65, 0.12);
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -43,7 +43,7 @@ body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-  background: var(--mustard);
+  background: var(--beige);
   font-family: var(--font-sans);
   color: var(--navy);
   -webkit-font-smoothing: antialiased;
@@ -57,6 +57,8 @@ img {
 button {
   font-family: inherit;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 
 a {
@@ -90,15 +92,111 @@ p {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background:
-    radial-gradient(var(--mustard-deep) 1.5px, transparent 1.5px);
-  background-size: 22px 22px;
-  background-color: var(--mustard);
+  background: linear-gradient(120deg, var(--sky), var(--beige), var(--beige-deep), var(--beige));
+  background-size: 400% 400%;
+  animation: shift-wash 22s ease-in-out infinite;
+}
+
+@keyframes shift-wash {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ==========================================================================
+   Melting blob background
+   ========================================================================== */
+
+.blob-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  filter: url(#goo) blur(2px);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  opacity: 0.4;
+  animation: melt-drift 20s ease-in-out infinite, melt-morph 13s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 32vmax;
+  height: 32vmax;
+  top: -12%;
+  left: -10%;
+  background: var(--sky);
+}
+
+.blob-2 {
+  width: 24vmax;
+  height: 24vmax;
+  top: 45%;
+  right: -10%;
+  background: var(--beige-deep);
+  animation-delay: -4s, -2s;
+}
+
+.blob-3 {
+  width: 20vmax;
+  height: 20vmax;
+  bottom: -12%;
+  left: 20%;
+  background: var(--sky-deep);
+  animation-delay: -9s, -5s;
+}
+
+.blob-4 {
+  width: 16vmax;
+  height: 16vmax;
+  bottom: 12%;
+  right: 22%;
+  background: var(--beige);
+  animation-delay: -13s, -7s;
+}
+
+@keyframes melt-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(6%, 8%) scale(1.1);
+  }
+  66% {
+    transform: translate(-5%, 4%) scale(0.9);
+  }
+}
+
+@keyframes melt-morph {
+  0%,
+  100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+  }
+  25% {
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  }
+  50% {
+    border-radius: 35% 65% 55% 45% / 65% 35% 65% 35%;
+  }
+  75% {
+    border-radius: 55% 45% 65% 35% / 30% 65% 35% 70%;
+  }
 }
 
 .scene {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,14 +211,14 @@ p {
 }
 
 .board {
-  width: min(1200px, 94vw);
-  height: min(700px, 88vh);
+  width: min(1300px, 96vw);
+  height: min(780px, 92vh);
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: clamp(1rem, 3vw, 3rem);
   padding: clamp(1rem, 3vw, 2rem);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .intro-column {
@@ -130,55 +228,57 @@ p {
 }
 
 /* ==========================================================================
-   Speech bubble (intro)
+   Intro text (plain typography, no card/bubble chrome)
    ========================================================================== */
 
-.speech-bubble {
-  position: relative;
-  background: var(--cream);
-  border: var(--outline) solid var(--ink);
-  border-radius: 34px;
-  box-shadow: var(--pop-shadow);
-  padding: clamp(1.25rem, 3vw, 2.25rem);
-  transform: rotate(-1.2deg);
+.intro-title {
+  display: inline-block;
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  color: var(--navy);
+  margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  animation: gentle-float-text 6s ease-in-out infinite;
 }
 
-.speech-bubble p {
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  line-height: 1.55;
+@keyframes gentle-float-text {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-title {
+    animation: none;
+  }
+}
+
+.intro-text {
+  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  line-height: 1.6;
   font-weight: 600;
+  color: var(--navy-soft);
+  max-width: 46ch;
 }
 
-.speech-tail {
-  position: absolute;
-  bottom: -28px;
-  left: 64px;
-  width: 46px;
-  height: 46px;
-  background: var(--cream);
-  border-left: var(--outline) solid var(--ink);
-  border-bottom: var(--outline) solid var(--ink);
-  border-bottom-left-radius: 22px;
-  transform: rotate(45deg);
+.intro-title.typing::after,
+.intro-text.typing::after {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 3px;
+  background: currentColor;
+  vertical-align: text-bottom;
+  animation: caret-blink 0.8s steps(1) infinite;
 }
 
-.tape {
-  position: absolute;
-  width: 70px;
-  height: 26px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 2px solid rgba(20, 23, 28, 0.35);
-  top: -14px;
-}
-
-.tape-left {
-  left: 36px;
-  transform: rotate(-8deg);
-}
-
-.tape-right {
-  right: 48px;
-  transform: rotate(6deg);
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ==========================================================================
@@ -188,26 +288,25 @@ p {
 .get-in-touch {
   margin-top: clamp(1.25rem, 3vw, 2rem);
   display: inline-block;
-  background: var(--accent);
-  color: var(--cream);
-  border: var(--outline) solid var(--ink);
+  background: var(--sky);
+  color: var(--navy);
+  border: 3px solid var(--sky-deep);
   border-radius: 999px;
   padding: 0.85rem 1.75rem;
   font-family: var(--font-display);
   font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  box-shadow: var(--pop-shadow-sm);
-  transform: rotate(1deg);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.4s ease;
 }
 
 .get-in-touch:hover {
-  transform: rotate(1deg) translateY(-3px);
-  box-shadow: 6px 8px 0 var(--ink);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: var(--shadow);
+  border-radius: 40% 60% 60% 40% / 65% 45% 55% 35%;
 }
 
 .get-in-touch:active {
-  transform: rotate(1deg) translateY(0);
-  box-shadow: 2px 2px 0 var(--ink);
+  transform: translateY(0);
 }
 
 /* ==========================================================================
@@ -226,40 +325,42 @@ p {
 .thought-bubbles {
   position: relative;
   width: 100%;
-  height: clamp(150px, 22vh, 210px);
-  margin-bottom: 0.5rem;
+  height: clamp(120px, 16vh, 170px);
+  margin-bottom: 2.75rem;
 }
 
 .thought-bubble {
   position: absolute;
-  background: var(--cream);
-  border: var(--outline) solid var(--ink);
-  border-radius: 50% 50% 50% 40% / 50% 50% 45% 45%;
-  box-shadow: var(--pop-shadow-sm);
-  font-family: var(--font-display);
-  color: var(--navy);
+  background-color: #ffffff;
+  border: 4px solid var(--cloud-ink);
+  border-radius: 200px;
+  box-shadow: 4px 4px 0 var(--cloud-ink);
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0.5rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.thought-bubble span {
-  font-size: clamp(0.85rem, 1.3vw, 1.05rem);
+  padding: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .thought-bubble:hover {
   transform: scale(1.06) rotate(var(--tilt, 0deg));
-  box-shadow: 6px 6px 0 var(--ink);
+  box-shadow: 6px 6px 0 var(--cloud-ink);
+}
+
+.tb-label {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  color: var(--navy);
+  font-size: clamp(0.8rem, 1.2vw, 1.05rem);
 }
 
 .tb-philosophy {
   --tilt: -4deg;
-  width: clamp(105px, 13vw, 140px);
-  height: clamp(105px, 13vw, 140px);
-  top: 0;
+  width: clamp(150px, 17vw, 200px);
+  height: clamp(90px, 10.2vw, 120px);
+  top: -8%;
   left: 2%;
   z-index: 2;
   transform: rotate(-4deg);
@@ -267,67 +368,100 @@ p {
 
 .tb-projects {
   --tilt: 3deg;
-  width: clamp(115px, 14.5vw, 155px);
-  height: clamp(115px, 14.5vw, 155px);
-  top: 4%;
-  right: 0;
+  width: clamp(160px, 18.5vw, 220px);
+  height: clamp(96px, 11.2vw, 132px);
+  top: -2%;
+  right: -2%;
   z-index: 3;
   transform: rotate(3deg);
 }
 
 .tb-experience {
   --tilt: -2deg;
-  width: clamp(95px, 12vw, 128px);
-  height: clamp(95px, 12vw, 128px);
-  bottom: 0;
-  left: 34%;
+  width: clamp(140px, 15.5vw, 184px);
+  height: clamp(84px, 9.4vw, 110px);
+  bottom: 16%;
+  left: 33%;
   z-index: 1;
   transform: rotate(-2deg);
 }
 
-.thought-dot {
+/* Small trailing dots, positioned per bubble so they point back
+   toward the head/photo below. */
+
+.thought-bubble .dot {
   position: absolute;
-  background: var(--cream);
-  border: 3px solid var(--ink);
+  background-color: #ffffff;
+  border: 4px solid var(--cloud-ink);
   border-radius: 50%;
+  width: 25px;
+  height: 25px;
 }
 
-.dot-1 {
-  width: 22px;
-  height: 22px;
-  bottom: -18px;
-  left: 42%;
+.thought-bubble .dot-smaller {
+  width: 15px;
+  height: 15px;
 }
 
-.dot-2 {
-  width: 13px;
-  height: 13px;
-  bottom: -36px;
-  left: 47%;
+/* Philosophy sits up-left of the head: dots trail down and to the right. */
+.tb-philosophy .dot {
+  bottom: -32px;
+  right: 46px;
+}
+.tb-philosophy .dot-smaller {
+  bottom: -54px;
+  right: 26px;
+}
+
+/* Projects sits up-right of the head: dots trail down and to the left. */
+.tb-projects .dot {
+  bottom: -32px;
+  left: 46px;
+}
+.tb-projects .dot-smaller {
+  bottom: -54px;
+  left: 26px;
+}
+
+/* Experience sits directly above the head: dots trail straight down. */
+.tb-experience .dot {
+  bottom: -32px;
+  left: 50%;
+  margin-left: -12px;
+}
+.tb-experience .dot-smaller {
+  bottom: -54px;
+  left: 50%;
+  margin-left: -20px;
 }
 
 .photo-frame {
-  width: clamp(160px, 20vw, 230px);
-  height: clamp(160px, 20vw, 230px);
-  border-radius: 50%;
-  border: var(--outline) solid var(--ink);
-  box-shadow: var(--pop-shadow);
-  overflow: hidden;
-  background: var(--cream-dim);
-  padding: 0;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  width: clamp(230px, 27vw, 340px);
+  height: clamp(340px, 56vh, 520px);
+  transition: transform 0.5s ease;
+  animation: gentle-float 6s ease-in-out infinite;
 }
 
 .photo-frame:hover {
-  transform: translateY(-4px);
-  box-shadow: 8px 10px 0 var(--ink);
+  transform: translateY(-6px) scale(1.02);
 }
 
 .photo-frame img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 12px 18px rgba(28, 37, 65, 0.28));
+}
+
+@keyframes gentle-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* ==========================================================================
@@ -370,6 +504,13 @@ p {
   padding: clamp(1.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 2rem) 4rem;
 }
 
+.panel--wide .panel-inner {
+  max-width: none;
+  width: 100%;
+  padding-left: clamp(1.25rem, 4vw, 3.5rem);
+  padding-right: clamp(1.25rem, 4vw, 3.5rem);
+}
+
 .panel-close {
   position: fixed;
   top: clamp(1rem, 3vw, 1.75rem);
@@ -379,20 +520,19 @@ p {
   height: 48px;
   border-radius: 50%;
   background: var(--cream);
-  border: var(--outline) solid var(--ink);
-  box-shadow: var(--pop-shadow-sm);
+  border: 3px solid var(--sky-deep);
+  box-shadow: var(--shadow-sm);
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--navy);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.2s ease;
 }
 
 .panel-close:hover {
   transform: rotate(90deg);
-  box-shadow: 6px 6px 0 var(--ink);
 }
 
 .panel-title {
@@ -420,8 +560,8 @@ p {
 .panel-quote {
   margin: var(--space-4) 0 0;
   padding: var(--space-2) var(--space-3);
-  background: var(--cream-dim);
-  border: 3px solid var(--ink);
+  background: var(--beige);
+  border: 3px solid var(--sky-deep);
   border-radius: 18px;
   font-style: italic;
   font-weight: 600;
@@ -436,38 +576,77 @@ p {
   color: var(--navy-soft);
 }
 
+/* Philosophy panel: spread the title, paragraphs, and quote evenly
+   down the full page height instead of clumping at the top. */
+
+#panel-philosophy .panel-inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#panel-philosophy .panel-body {
+  display: contents;
+}
+
+#panel-philosophy .panel-body p,
+#panel-philosophy .panel-quote {
+  margin: 0;
+}
+
+#panel-philosophy .panel-body p {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+}
+
 /* ==========================================================================
    Project cards (inside Projects panel)
    ========================================================================== */
 
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
 }
 
 .project-card {
-  background: var(--cream-dim);
-  border: var(--outline) solid var(--ink);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--beige);
+  border: 3px solid var(--border);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: var(--pop-shadow-sm);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.5s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+  border-radius: 30px 10px 30px 10px;
 }
 
 .project-image {
-  aspect-ratio: 786 / 661;
+  flex: 0 0 clamp(340px, 42%, 620px);
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--cream);
-  border-bottom: var(--outline) solid var(--ink);
   overflow: hidden;
+  padding: var(--space-3);
 }
 
 .project-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .project-copy {
+  flex: 1;
+  min-width: 0;
   padding: var(--space-3);
 }
 
@@ -478,7 +657,7 @@ p {
 
 .project-tagline {
   font-style: italic;
-  color: var(--accent-ink);
+  color: var(--sky-deep);
   font-weight: 600;
   margin-bottom: var(--space-2);
   font-size: 0.95rem;
@@ -502,7 +681,7 @@ p {
 
 .project-link {
   font-weight: 700;
-  color: var(--accent-ink);
+  color: var(--sky-deep);
 }
 
 /* ==========================================================================
@@ -516,11 +695,11 @@ p {
 }
 
 .experience-card {
-  background: var(--cream-dim);
-  border: var(--outline) solid var(--ink);
+  background: var(--beige);
+  border: 3px solid var(--border);
   border-radius: 22px;
   padding: var(--space-3);
-  box-shadow: var(--pop-shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .experience-header {
@@ -546,7 +725,7 @@ p {
 .experience-org {
   font-style: italic;
   font-weight: 600;
-  color: var(--accent-ink);
+  color: var(--sky-deep);
   margin-bottom: var(--space-2);
   font-size: 0.95rem;
 }
@@ -572,7 +751,7 @@ p {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--sky-deep);
 }
 
 .experience-card--compact {
@@ -610,8 +789,32 @@ p {
 }
 
 .contact-list a:hover {
-  color: var(--accent-ink);
-  border-color: var(--accent);
+  color: var(--sky-deep);
+  border-color: var(--sky);
+}
+
+/* Contact panel: the destination of "Get in touch" should read as the
+   main event on the page, not a modest link list. */
+
+.panel--contact .panel-inner {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.panel--contact .panel-title {
+  font-size: clamp(3.5rem, 10vw, 7rem);
+}
+
+.panel--contact .panel-subtext {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-bottom: var(--space-4);
+}
+
+.panel--contact .contact-list {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  gap: var(--space-3);
 }
 
 /* ==========================================================================
@@ -619,12 +822,16 @@ p {
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
+  .stage,
+  .blob,
   .scene,
   .panel,
   .get-in-touch,
   .thought-bubble,
   .photo-frame,
+  .project-card,
   .panel-close {
+    animation: none !important;
     transition: none !important;
   }
 }
@@ -643,18 +850,18 @@ p {
     text-align: center;
   }
 
-  .speech-bubble {
+  .intro-title {
     order: 2;
-    transform: rotate(0deg);
   }
 
-  .speech-bubble p {
+  .intro-title,
+  .intro-text {
     font-size: clamp(0.85rem, 3vw, 1rem);
   }
 
-  .speech-tail {
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
+  .intro-text {
+    order: 2;
+    max-width: none;
   }
 
   .get-in-touch {
@@ -667,11 +874,20 @@ p {
   }
 
   .thought-bubbles {
-    height: clamp(140px, 24vh, 200px);
+    height: clamp(110px, 18vh, 150px);
   }
 
   .photo-frame {
-    width: clamp(110px, 30vw, 150px);
-    height: clamp(110px, 30vw, 150px);
+    width: clamp(160px, 42vw, 220px);
+    height: clamp(240px, 40vh, 320px);
+  }
+
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-image {
+    flex-basis: auto;
+    aspect-ratio: 786 / 661;
   }
 }

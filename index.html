@@ -16,23 +16,36 @@
 </head>
 <body>
 
+  <svg class="goo-defs" aria-hidden="true" focusable="false">
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+      <feColorMatrix in="blur" mode="matrix"
+        values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo" />
+      <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+    </filter>
+  </svg>
+
   <!-- ============ HOME SCENE (fixed, non-scrolling bulletin board) ============ -->
   <div class="stage" id="stage">
+
+    <div class="blob-field" aria-hidden="true">
+      <span class="blob blob-1"></span>
+      <span class="blob blob-2"></span>
+      <span class="blob blob-3"></span>
+      <span class="blob blob-4"></span>
+    </div>
+
     <div class="scene" id="scene">
       <div class="board">
 
         <div class="intro-column">
-          <div class="speech-bubble" id="intro-bubble">
-            <span class="tape tape-left" aria-hidden="true"></span>
-            <span class="tape tape-right" aria-hidden="true"></span>
-            <p>
-              Hey! I&rsquo;m Bhavi. I&rsquo;m a student at Carnegie Mellon University (Class of 2030)
-              studying Information Systems. I&rsquo;m interested in Product Management and
-              Human-Computer Interaction, particularly curious about our society&rsquo;s relationship
-              with technology and how we can design it more humanely, for real social benefit.
-            </p>
-            <span class="speech-tail" aria-hidden="true"></span>
-          </div>
+          <h1 class="intro-title">Hey! I&rsquo;m Bhavi.</h1>
+          <p class="intro-text">
+            I&rsquo;m a student at Carnegie Mellon University (Class of 2030)
+            studying Information Systems. I&rsquo;m interested in Product Management and
+            Human-Computer Interaction, particularly curious about our society&rsquo;s relationship
+            with technology and how we can design it more humanely, for real social benefit.
+          </p>
 
           <button class="get-in-touch" type="button" data-target="contact">
             Get in touch
@@ -42,20 +55,24 @@
         <div class="photo-cluster">
           <div class="thought-bubbles">
             <button class="thought-bubble tb-philosophy" type="button" data-target="philosophy">
-              <span>Philosophy</span>
+              <span class="tb-label">Philosophy</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="dot dot-smaller" aria-hidden="true"></span>
             </button>
             <button class="thought-bubble tb-projects" type="button" data-target="projects">
-              <span>Projects</span>
+              <span class="tb-label">Projects</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="dot dot-smaller" aria-hidden="true"></span>
             </button>
             <button class="thought-bubble tb-experience" type="button" data-target="experience">
-              <span>Experience</span>
+              <span class="tb-label">Experience</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="dot dot-smaller" aria-hidden="true"></span>
             </button>
-            <span class="thought-dot dot-1" aria-hidden="true"></span>
-            <span class="thought-dot dot-2" aria-hidden="true"></span>
           </div>
 
           <button class="photo-frame" type="button" data-target="contact" aria-label="Open contact panel">
-            <img src="assets/photo.jpg" alt="Portrait of Bhavi" />
+            <img src="assets/photo.jpg" alt="Full-body portrait of Bhavi" />
           </button>
         </div>
 
@@ -74,17 +91,17 @@
         <div class="panel-body panel-body--narrow">
           <p>
             I believe that innovation is strongest when it&rsquo;s rooted in a core philosophy.
-            For me, that philosophy is Advaita Vedanta &mdash; the nondual school of Hindu thought
+            For me, that philosophy is Advaita Vedanta, the nondual school of Hindu thought
             systematized by Adi Shankaracharya in the 8th century CE. Its central claim is simple
             to state and hard to fully grasp: the sense that you are a separate self, cut off from
             everything else, is not the deepest truth. Beneath that sense of separateness is one
-            undivided consciousness &mdash; what Advaita calls Brahman &mdash; and everything,
+            undivided consciousness, what Advaita calls Brahman, and everything,
             including you, is an expression of it.
           </p>
           <p>
             In more practical terms, it holds that each of us carries an immense, often unrealized
             strength and courage within. I believe that humane strength should sit at the center of
-            any product &mdash; the product itself is simply a means through which we come to
+            any product. The product itself is simply a means through which we come to
             realize ourselves.
           </p>
           <blockquote class="panel-quote">
@@ -96,7 +113,7 @@
     </section>
 
     <!-- PROJECTS -->
-    <section class="panel" id="panel-projects" data-panel="projects" role="dialog" aria-modal="true" aria-labelledby="projects-title">
+    <section class="panel panel--wide" id="panel-projects" data-panel="projects" role="dialog" aria-modal="true" aria-labelledby="projects-title">
       <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
       <div class="panel-inner">
         <h2 id="projects-title" class="panel-title">Projects</h2>
@@ -248,7 +265,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="panel" id="panel-contact" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <section class="panel panel--contact" id="panel-contact" data-panel="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title">
       <button class="panel-close" type="button" data-close aria-label="Close and return home">✕</button>
       <div class="panel-inner">
         <h2 id="contact-title" class="panel-title">Contact</h2>

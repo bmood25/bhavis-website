@@ -1,6 +1,44 @@
 (function () {
   'use strict';
 
+  /* Typewriter intro: type the heading, then the paragraph, letter by letter. */
+  (function typewriterIntro() {
+    var titleEl = document.querySelector('.intro-title');
+    var textEl = document.querySelector('.intro-text');
+    if (!titleEl || !textEl) return;
+
+    var titleText = titleEl.textContent.replace(/\s+/g, ' ').trim();
+    var bodyText = textEl.textContent.replace(/\s+/g, ' ').trim();
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      titleEl.textContent = titleText;
+      textEl.textContent = bodyText;
+      return;
+    }
+
+    titleEl.textContent = '';
+    textEl.textContent = '';
+
+    function type(el, text, speed, onDone) {
+      el.classList.add('typing');
+      var i = 0;
+      (function tick() {
+        el.textContent = text.slice(0, i);
+        if (i < text.length) {
+          i++;
+          setTimeout(tick, speed);
+        } else {
+          el.classList.remove('typing');
+          if (onDone) onDone();
+        }
+      })();
+    }
+
+    type(titleEl, titleText, 60, function () {
+      type(textEl, bodyText, 14);
+    });
+  })();
+
   var scene = document.getElementById('scene');
   var triggers = document.querySelectorAll('[data-target]');
   var closeButtons = document.querySelectorAll('[data-close]');
