@@ -282,31 +282,61 @@ p {
 }
 
 /* ==========================================================================
-   Get in touch button
+   Get in touch sign (not a button, the photo below is the only trigger)
    ========================================================================== */
 
-.get-in-touch {
-  margin-top: clamp(1.25rem, 3vw, 2rem);
-  display: inline-block;
-  background: var(--sky);
+.get-in-touch-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: var(--navy);
-  border: 3px solid var(--sky-deep);
-  border-radius: 999px;
-  padding: 0.85rem 1.75rem;
-  font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.4s ease;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.get-in-touch:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: var(--shadow);
-  border-radius: 40% 60% 60% 40% / 65% 45% 55% 35%;
-}
-
-.get-in-touch:active {
+.get-in-touch-sign.is-visible {
+  opacity: 1;
   transform: translateY(0);
+}
+
+.sign-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  white-space: nowrap;
+}
+
+.sign-arrow {
+  width: clamp(80px, 8.5vw, 110px);
+  height: auto;
+  margin-top: 0.25rem;
+  color: var(--navy);
+  animation: arrow-nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes arrow-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(6px);
+  }
+}
+
+.photo-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sign-arrow {
+    animation: none;
+  }
+  .get-in-touch-sign {
+    transition: none;
+  }
 }
 
 /* ==========================================================================
@@ -826,7 +856,7 @@ p {
   .blob,
   .scene,
   .panel,
-  .get-in-touch,
+  .sign-arrow,
   .thought-bubble,
   .photo-frame,
   .project-card,
@@ -862,10 +892,6 @@ p {
   .intro-text {
     order: 2;
     max-width: none;
-  }
-
-  .get-in-touch {
-    order: 3;
   }
 
   .photo-cluster {

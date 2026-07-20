@@ -1,18 +1,25 @@
 (function () {
   'use strict';
 
-  /* Typewriter intro: type the heading, then the paragraph, letter by letter. */
+  /* Typewriter intro: type the heading, then the paragraph, letter by letter.
+     The "Get in touch" sign only fades in once both are fully typed. */
   (function typewriterIntro() {
     var titleEl = document.querySelector('.intro-title');
     var textEl = document.querySelector('.intro-text');
+    var signEl = document.getElementById('get-in-touch-sign');
     if (!titleEl || !textEl) return;
 
     var titleText = titleEl.textContent.replace(/\s+/g, ' ').trim();
     var bodyText = textEl.textContent.replace(/\s+/g, ' ').trim();
 
+    function revealSign() {
+      if (signEl) signEl.classList.add('is-visible');
+    }
+
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       titleEl.textContent = titleText;
       textEl.textContent = bodyText;
+      revealSign();
       return;
     }
 
@@ -35,7 +42,7 @@
     }
 
     type(titleEl, titleText, 60, function () {
-      type(textEl, bodyText, 14);
+      type(textEl, bodyText, 14, revealSign);
     });
   })();
 
