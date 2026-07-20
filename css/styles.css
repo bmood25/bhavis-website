@@ -948,11 +948,33 @@ p {
     padding: 0 0.5rem;
   }
 
-  /* The photo is the only tap target for contact on mobile; the decorative
-     sign next to it would otherwise eat horizontal space in the flex row
-     and push the photo off-center. */
+  /* The sign shouldn't take up flow space next to the photo (that's what
+     was pushing the photo off-center) — pull it out of flow and anchor it
+     to the left of the now-centered photo instead, sized down to fit the
+     narrower margin at mobile widths. */
+  .photo-row {
+    position: relative;
+  }
+
   .get-in-touch-sign {
-    display: none;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    margin-right: 0.4rem;
+    transform: translateY(-50%);
+  }
+
+  .get-in-touch-sign.is-visible {
+    transform: translateY(-50%);
+  }
+
+  .get-in-touch-sign .sign-text {
+    font-size: 0.8rem;
+  }
+
+  .get-in-touch-sign .sign-arrow {
+    width: 50px;
+    margin-top: 0.15rem;
   }
 
   .thought-bubble {
