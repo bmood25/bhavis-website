@@ -917,3 +917,103 @@ p {
     aspect-ratio: 786 / 661;
   }
 }
+
+/* ==========================================================================
+   Mobile-only fixes (iPhone SE ~375px through standard mobile ~430px)
+   Scoped tighter than the 860px tablet breakpoint above so tablet layout
+   is untouched.
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+  /* --- BUG 1: overlapping thought bubbles ---
+     Replace the absolutely-positioned, overlapping bubble trio with a
+     stacked column. Each bubble keeps its own trailing dots pointing
+     straight down toward the next bubble (and finally toward the head),
+     preserving the "thought trail" concept without any overlap. */
+
+  .thought-bubbles {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .thought-bubble {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none !important;
+    width: auto;
+    height: auto;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .thought-bubble:hover {
+    transform: none !important;
+  }
+
+  .tb-philosophy {
+    order: 1;
+    z-index: 3;
+  }
+
+  .tb-projects {
+    order: 2;
+    z-index: 2;
+  }
+
+  .tb-experience {
+    order: 3;
+    z-index: 1;
+  }
+
+  /* All three bubbles get the same straight-down trail now that they're
+     stacked in a single column, matching the existing .tb-experience dots. */
+  .tb-philosophy .dot,
+  .tb-projects .dot,
+  .tb-experience .dot {
+    bottom: -32px;
+    left: 50%;
+    right: auto;
+    margin-left: -12px;
+  }
+
+  .tb-philosophy .dot-smaller,
+  .tb-projects .dot-smaller,
+  .tb-experience .dot-smaller {
+    bottom: -54px;
+    left: 50%;
+    right: auto;
+    margin-left: -20px;
+  }
+
+  /* --- BUG 2: cramped Philosophy & Interests panel --- */
+
+  #panel-philosophy .panel-inner {
+    justify-content: flex-start;
+    gap: 1.75rem;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  #panel-philosophy .panel-body p {
+    line-height: 1.85;
+  }
+
+  #panel-philosophy .panel-quote {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 1.25rem;
+  }
+}
