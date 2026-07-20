@@ -942,10 +942,17 @@ p {
     justify-content: center;
     width: 100%;
     height: auto;
-    row-gap: 3.25rem;
+    row-gap: 1.5rem;
     column-gap: 0.875rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
     padding: 0 0.5rem;
+  }
+
+  /* The photo is the only tap target for contact on mobile; the decorative
+     sign next to it would otherwise eat horizontal space in the flex row
+     and push the photo off-center. */
+  .get-in-touch-sign {
+    display: none;
   }
 
   .thought-bubble {
@@ -975,7 +982,7 @@ p {
   .tb-projects {
     order: 2;
     z-index: 2;
-    margin-top: 1.1rem;
+    margin-top: 0.6rem;
   }
 
   /* Invisible full-width spacer forces a flex-wrap line break right after
@@ -984,13 +991,15 @@ p {
   .thought-bubbles::after {
     content: '';
     flex-basis: 100%;
+    height: 0;
+    line-height: 0;
     order: 2;
   }
 
   .tb-experience {
     order: 3;
     z-index: 1;
-    margin-top: 0.25rem;
+    margin-top: 0;
   }
 
   /* Philosophy sits upper-left of the head: dots trail down-right, same
