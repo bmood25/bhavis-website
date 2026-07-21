@@ -357,6 +357,7 @@ p {
   width: 100%;
   height: clamp(120px, 16vh, 170px);
   margin-bottom: 2.75rem;
+  transform: translateX(8%);
 }
 
 .thought-bubble {
@@ -901,6 +902,7 @@ p {
 
   .thought-bubbles {
     height: clamp(110px, 18vh, 150px);
+    transform: none;
   }
 
   .photo-frame {
