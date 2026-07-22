@@ -615,6 +615,7 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  gap: clamp(1.5rem, 4vh, 2.5rem);
 }
 
 #panel-philosophy .panel-body {
